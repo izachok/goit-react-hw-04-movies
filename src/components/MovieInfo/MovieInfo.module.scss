@@ -1,0 +1,108 @@
+@import 'styles/utils/index.scss';
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @include for-tablet-up {
+    margin: 20px;
+    flex-direction: row;
+  }
+}
+
+.posterWrapper {
+  max-width: 300px;
+  @include for-tablet-up {
+    margin-right: 30px;
+    max-width: 264px;
+  }
+  // @include for-desktop-up {
+  //   max-width: 396px;
+  // }
+}
+
+.poster {
+  margin: 0 0 30px 0;
+  border-radius: 5px;
+  @include for-tablet-up {
+    margin: 0;
+  }
+}
+
+.movieContent {
+  @include for-tablet-up {
+    // margin-left: 20px;
+    flex-basis: get-column-basis(2);
+  }
+}
+
+.title {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  @include for-desktop-up {
+    font-size: 30px;
+  }
+}
+
+.properties {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 20px;
+}
+
+.propertyItem {
+  color: $details-card-items-text-color;
+  width: 108px;
+  vertical-align: top;
+}
+
+.valueItem {
+  color: black;
+  font-weight: 500;
+  vertical-align: top;
+}
+
+.originalTitle {
+  composes: valueItem;
+  text-transform: uppercase;
+}
+
+.vote {
+  display: inline-block;
+  color: white;
+  background-color: $accent-color;
+  padding: 2px 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.voteLight {
+  composes: vote;
+  background-color: #f7f7f7;
+  color: $main-text-color;
+}
+
+.aboutWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.aboutHeader {
+  margin-right: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+}
+
+.aboutText {
+  width: 100%;
+  margin-bottom: 21px;
+
+  font-weight: 500;
+  line-height: 20px;
+}

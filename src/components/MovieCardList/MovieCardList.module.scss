@@ -1,0 +1,15 @@
+@import 'styles/main.scss';
+
+.list {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+
+  @include for-tablet-up {
+    @include elements-set;
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,72 @@
+body {
+  font-family: $main-font;
+  color: $main-text-color;
+  font-size: 12px;
+
+  // &.modal-open {
+  //   overflow: hidden;
+  // }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a:visited {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  color: $main-text-color;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 0 $column-gap/2;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include for-phone-up {
+    width: $mobile-width;
+    padding: 0px 20px;
+  }
+
+  @include for-tablet-up {
+    width: $tablet-width;
+    padding: 0px 75px;
+  }
+
+  @include for-desktop-up {
+    width: $desktop-width;
+    padding: 0px 70px;
+  }
+}

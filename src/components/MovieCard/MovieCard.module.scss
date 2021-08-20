@@ -1,0 +1,66 @@
+@import 'styles/utils/index.scss';
+
+.cardWrapper {
+  @include for-phone-only {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    width: 100%;
+  }
+
+  @include for-tablet-up {
+    width: 294px;
+    @include element;
+  }
+
+  @include for-desktop-up {
+    width: 274px;
+    transition: transform 0.2s;
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
+}
+
+.img {
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.boxImg {
+  margin-bottom: 10px;
+  @include for-phone-only {
+    max-width: 440px;
+  }
+  @include for-tablet-up {
+    width: 294px;
+    height: 398px;
+  }
+  @include for-desktop-up {
+    width: 274px;
+    height: 398px;
+  }
+}
+
+.title {
+  display: block;
+  width: inherit;
+  color: $main-text-color;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+}
