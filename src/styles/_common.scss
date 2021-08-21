@@ -1,3 +1,11 @@
+@import-normalize;
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: $main-font;
   color: $main-text-color;
@@ -19,9 +27,19 @@ p {
   padding: 0;
 }
 
-a:visited {
-  color: inherit;
-}
+// a {
+//   color: $main-text-color;
+
+//   &:hover,
+//   &:focus {
+//     color: $accent-color;
+//     background-color: tomato;
+//   }
+
+//   &:visited {
+//     color: inherit;
+//   }
+// }
 
 h1,
 h2,
@@ -36,6 +54,18 @@ h6 {
 
 .link {
   text-decoration: none;
+}
+
+.navLink {
+  color: $main-text-color;
+
+  &:hover {
+    color: $accent-color;
+  }
+}
+
+.navLinkActive {
+  color: $accent-color;
 }
 
 .list {

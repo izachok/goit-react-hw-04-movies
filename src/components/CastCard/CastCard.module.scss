@@ -1,0 +1,22 @@
+@import 'styles/utils/index.scss';
+
+.item {
+  @include element;
+  flex-basis: get-column-basis(2);
+
+  @include for-tablet-up {
+    flex-basis: get-column-basis(4);
+  }
+}
+
+.photo {
+  margin-bottom: 5px;
+}
+
+.row {
+  line-height: 1.5;
+
+  // &:not(:last-child) {
+  //   margin-bottom: 5px;
+  // }
+}

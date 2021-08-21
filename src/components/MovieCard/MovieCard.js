@@ -1,15 +1,24 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
-import s from './MovieCard.module.scss';
+import React from 'react';
 import { makePosterUrl } from '../../services/movie-utils';
+import s from './MovieCard.module.scss';
 
 function MovieCard({ movie }) {
   const { id, title, poster_path } = movie;
+  const location = useLocation();
 
   return (
     <li className={s.cardWrapper}>
-      <NavLink to={`/movies/${id}`}>
+      <NavLink
+        to={{
+          pathname: `/movies/${id}`,
+          state: {
+            from: location,
+          },
+        }}
+      >
         <div className={s.card}>
           <div className={s.boxImg}>
             <img
@@ -25,6 +34,12 @@ function MovieCard({ movie }) {
   );
 }
 
-MovieCard.propTypes = {};
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string,
+    poster_path: PropTypes.string,
+  }).isRequired,
+};
 
 export default MovieCard;

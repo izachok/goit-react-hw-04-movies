@@ -1,0 +1,19 @@
+@import 'styles/utils/index.scss';
+
+.item {
+  padding: 20px;
+  border: 1px solid $details-card-items-text-color;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.title {
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.text {
+  line-height: 1.5;
+}

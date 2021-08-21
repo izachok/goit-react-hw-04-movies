@@ -1,7 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import s from './MovieInfo.module.scss';
+import React from 'react';
 import { makePosterUrl } from '../../services/movie-utils';
+import s from './MovieInfo.module.scss';
 
 function MovieInfo({ movie }) {
   return (
@@ -34,7 +34,7 @@ function MovieInfo({ movie }) {
             </tr>
             <tr>
               <td className={s.propertyItem}>Genre</td>
-              <td className="value-item genre">
+              <td className={s.valueItem}>
                 {movie.genres.map(genre => genre.name).join(', ')}
               </td>
             </tr>
@@ -50,6 +50,17 @@ function MovieInfo({ movie }) {
   );
 }
 
-MovieInfo.propTypes = {};
+MovieInfo.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    vote_average: PropTypes.number,
+    vote_count: PropTypes.number,
+    popularity: PropTypes.number,
+    original_title: PropTypes.string,
+    genres: PropTypes.array,
+    overview: PropTypes.string,
+  }).isRequired,
+};
 
 export default MovieInfo;

@@ -1,0 +1,6 @@
+@import 'styles/utils/index.scss';
+
+.list {
+  @include elements-set;
+  list-style: none;
+}

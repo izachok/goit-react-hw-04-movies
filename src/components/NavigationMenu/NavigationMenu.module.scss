@@ -1,0 +1,19 @@
+@import '../../styles/utils/index';
+
+.container {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  margin-bottom: $column-gap-mobile;
+  border: 1px solid $footer-text-color;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.item {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 700;
+
+  &:not(:last-child) {
+    margin-right: 30px;
+  }
+}

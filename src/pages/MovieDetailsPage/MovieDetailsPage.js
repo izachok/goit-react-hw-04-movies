@@ -1,41 +1,65 @@
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useParams, useRouteMatch, Route } from 'react-router-dom';
-import { getMovieById } from '../../services/moviesdb-api';
-import MovieInfo from '../../components/MovieInfo/MovieInfo';
-import AdditionalNavigation from '../../components/AdditionalNavigation/AdditionalNavigation';
-import CastList from '../../components/CastList/CastList';
-import ReviewList from '../../components/ReviewList/ReviewList';
+import {
+  Link,
+  Route,
+  useLocation,
+  useParams,
+  useRouteMatch,
+} from 'react-router-dom';
+import { Suspense, lazy, useEffect, useState } from 'react';
 
-function MovieDetailsPage(props) {
+import AdditionalNavigation from '../../components/AdditionalNavigation';
+import ErrorMessage from './../../components/ErrorMessage/ErrorMessage';
+import Loading from '../../components/Loading';
+import MovieInfo from '../../components/MovieInfo';
+import Status from '../../services/status';
+import { getMovieById } from '../../services/moviesdb-api';
+
+const CastList = lazy(() =>
+  import('../../components/CastList' /* webpackChunkName: "cast-list" */),
+);
+const ReviewList = lazy(() =>
+  import('../../components/ReviewList' /* webpackChunkName: "review-list" */),
+);
+
+export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const [status, setStatus] = useState(null);
+  const [error, setError] = useState(null);
 
   const { path } = useRouteMatch();
+  const location = useLocation();
 
   useEffect(() => {
+    setStatus(Status.PENDING);
     getMovieById(movieId)
-      .then(setMovie)
+      .then(result => {
+        setMovie(result);
+        setStatus(Status.RESOLVED);
+      })
       .catch(err => {
-        //todo handle errors
-        console.log(err);
+        setError(err);
+        setStatus(Status.REJECTED);
       });
   }, [movieId]);
 
   return (
     <>
-      {movie && (
+      <Link type="button" to={location?.state?.from ?? '/'}>
+        Go back
+      </Link>
+      {status === Status.REJECTED && <ErrorMessage message={error.message} />}
+      {status === Status.PENDING && <Loading />}
+      {status === Status.RESOLVED && (
         <>
           <MovieInfo movie={movie} />
           <AdditionalNavigation />
         </>
       )}
-      <Route path={`${path}/cast`}>{movie && <CastList />}</Route>
-      <Route path={`${path}/reviews`}>{movie && <ReviewList />}</Route>
+      <Suspense fallback={<Loading />}>
+        <Route path={`${path}/cast`}>{movie && <CastList />}</Route>
+        <Route path={`${path}/reviews`}>{movie && <ReviewList />}</Route>
+      </Suspense>
     </>
   );
 }
-
-MovieDetailsPage.propTypes = {};
-
-export default MovieDetailsPage;
