@@ -22,13 +22,16 @@ const ReviewList = lazy(() =>
 );
 
 export default function MovieDetailsPage() {
+  const { path } = useRouteMatch();
+  const location = useLocation();
+
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [status, setStatus] = useState(null);
   const [error, setError] = useState(null);
-
-  const { path } = useRouteMatch();
-  const location = useLocation();
+  const [locationFrom, setLocationFrom] = useState(
+    location?.state?.from ?? '/',
+  );
 
   useEffect(() => {
     setStatus(Status.PENDING);
@@ -45,7 +48,7 @@ export default function MovieDetailsPage() {
 
   return (
     <>
-      <Link type="button" to={location?.state?.from ?? '/'}>
+      <Link type="button" to={locationFrom}>
         Go back
       </Link>
       {status === Status.REJECTED && <ErrorMessage message={error.message} />}
